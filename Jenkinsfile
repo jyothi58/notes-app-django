@@ -1,36 +1,27 @@
 @Library("Shared") _
 pipeline{
     
-    agent { label "vinod"}
+    agent { label "agent-1"}
     
     stages{
-        
-        stage("Hello"){
-            steps{
-                script{
-                    hello()
-                }
-            }
-        }
         stage("Code"){
             steps{
                script{
-                clone("https://github.com/LondheShubham153/django-notes-app.git","main")
+                clone("https://github.com/jyothi58/notes-app-django.git","main")
                }
-                
             }
         }
         stage("Build"){
             steps{
                 script{
-                docker_build("notes-app","latest","trainwithshubham")
+                docker_build("notes-app","latest","jyothi58")
                 }
             }
         }
         stage("Push to DockerHub"){
             steps{
                 script{
-                    docker_push("notes-app","latest","trainwithshubham")
+                    docker_push("notes-app","latest","jyothi58")
                 }
             }
         }
